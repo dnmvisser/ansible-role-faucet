@@ -1,0 +1,27 @@
+---
+# 
+- name: Install system packages
+  package: name={{item}}
+    state=present
+  with_items:
+    - git
+    - python-pip
+    - telnet
+
+- name: Install pip packages
+  #  pip: name=ryu-faucet
+  pip: name={{item}}
+  with_items:
+    - ryu
+    - pyyaml
+    - influxdb
+    - ipaddr
+    - concurrencytest
+    - couchdb
+    - networkx
+
+
+- name: Install faucet from GitHub
+  become_user: "{{ faucet_user }}"
+  git: repo=https://github.com/REANNZ/faucet
+    dest=/home/{{ faucet_user }}/faucet

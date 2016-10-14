@@ -1,0 +1,17 @@
+
+- name: Startup script
+  template: src=templates/start-faucet.j2
+    dest=/home/{{ faucet_user }}/start-faucet.sh
+    mode=0755
+
+- name: Systemd service file
+  template: src=templates/faucet.service.j2
+    dest=/etc/systemd/system/faucet.service 
+
+# http://manpages.ubuntu.com/manpages/xenial/man8/systemd-networkd-wait-online.service.8.html
+- name: Enable faucet and dependend services
+  service: name="{{item}}"
+    enabled=yes
+  with_items:
+    - systemd-networkd-wait-online.service
+    - faucet

@@ -1,0 +1,7 @@
+---
+#
+- name: Ensure logging directory is available
+  file: path={{ faucet_logdir }}
+    state=directory
+    owner="{{ faucet_user }}"
+    group="{{ faucet_group }}"

@@ -1,0 +1,16 @@
+---
+# tasks file for faucet
+- include: useraccount.yml
+  tags: [faucet,user]
+  
+- include: packages.yml
+  tags: [faucet,packages]
+
+- include: config.yml
+  tags: [faucet,config]
+
+- include: logs.yml
+  tags: [faucet,logs]
+  
+- include: startup.yml
+  tags: [faucet,startup]

@@ -1,0 +1,12 @@
+---
+#
+- name: Add '{{ faucet_group}}' system group
+  group: name="{{faucet_group}}"
+    system=yes
+
+- name: Add '{{faucet_user}}' system user
+  user: name="{{faucet_user}}"
+    group="{{faucet_group}}"
+    system=yes
+    shell=/bin/bash
+    comment="Faucet OpenFlow controller"

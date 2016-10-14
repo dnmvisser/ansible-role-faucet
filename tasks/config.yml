@@ -1,0 +1,19 @@
+---
+#
+- name: Defaults file
+  template: src=templates/default.j2
+    dest=/etc/default/faucet
+
+- name: Ensure configuration directory is available
+  file: path=/etc/faucet
+    state=directory
+
+- name: Check if configuration file exists
+  stat: path=/etc/faucet/faucet.yaml
+  register: cfgfile
+
+- name: Copy default configuration file
+  copy: src=/home/{{faucet_user}}/faucet/src/cfg/etc/ryu/faucet/faucet.yaml
+    dest=/etc/faucet/faucet.yaml
+    remote_src=true
+  when: not cfgfile.stat.exists

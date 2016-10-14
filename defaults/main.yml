@@ -1,0 +1,9 @@
+---
+# defaults file for faucet
+faucet_user: faucet
+faucet_group: faucet
+faucet_listen_host: 192.168.55.55
+faucet_listen_port: 6636
+faucet_logdir: /var/log/faucet
+faucet_logfile: faucet.log
+faucet_exceptionlogfile: exception.log
